@@ -8,6 +8,6 @@ package Elementos;
  *
  * @author lopez
  */
-public class VehiculoAccidentadoException {
+public class VehiculoAccidentadoException extends RuntimeException{
     
 }

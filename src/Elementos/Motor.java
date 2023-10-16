@@ -10,12 +10,10 @@ package Elementos;
  */
 public abstract class Motor {
     
-    private int cilindraje;
+    private int velocidadMaxima;
 
-    public Motor(int cilindraje) {
-        this.cilindraje = cilindraje;
+    public Motor(int velocidadMaxima) {
+        this.velocidadMaxima = velocidadMaxima;
     }
-    
-    
     
 }

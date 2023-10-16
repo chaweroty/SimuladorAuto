@@ -8,6 +8,13 @@ package Elementos;
  *
  * @author lopez
  */
-public class VehiculoDetenidoException {
+public class VehiculoDetenidoException extends RuntimeException{
+
+    @Override
+    public String getMessage() {
+        return "El vehiculo se encuentra detenido, por lo tanto no se puede frenar.";
+    }
+    
+    
     
 }

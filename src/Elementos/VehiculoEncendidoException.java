@@ -9,5 +9,10 @@ package Elementos;
  * @author lopez
  */
 public class VehiculoEncendidoException extends RuntimeException{
-    
+
+    @Override
+    public String getMessage() {
+        return "El vehiculo ya está encendido.";
+    }
+
 }

@@ -10,14 +10,96 @@ package Elementos;
  */
 public class Vehiculo {
     
-    Motor motor;
-    Llanta llanta;
+    private Motor motor;
+    private Llanta llanta;
+    private boolean estado;
+    private int velocidad;
 
     public Vehiculo(Motor motor, Llanta llanta) {
         this.motor = motor;
         this.llanta = llanta;
+        this.estado = false;
     }
     
+    public void encender() throws VehiculoEncendidoException{
+        if(estado == true){
+            VehiculoEncendidoException vee = new VehiculoEncendidoException();
+            throw vee;
+        }else{
+            estado = true;
+        }
+    }
     
+    public void apagar() throws VehiculoApagadoException, VehiculoAccidentadoException{
+        if(estado == false){
+            VehiculoApagadoException vae = new VehiculoApagadoException();
+            throw vae;
+        }else{
+            estado = false;
+        }
+    }
+    
+    public void acelerar(int velocidadAcelerado) throws VehiculoApagadoException{
+        if(estado == false){
+            VehiculoApagadoException vae = new VehiculoApagadoException();
+            throw vae;
+        }else{
+            setVelocidad(velocidadAcelerado);
+        }
+    }
+    
+    public void frenar(int velocidadFrenado) throws VehiculoApagadoException, VehiculoDetenidoException{
+        if(estado == false){
+            VehiculoApagadoException vae = new VehiculoApagadoException();
+            throw vae;
+        }else if(velocidad == 0){
+            VehiculoDetenidoException vde = new VehiculoDetenidoException();
+            throw vde;
+        }else{
+            this.velocidad -= velocidadFrenado;
+        }
+    }
+
+    /**
+     * @return the motor
+     */
+    public Motor getMotor() {
+        return motor;
+    }
+
+    /**
+     * @return the llanta
+     */
+    public Llanta getLlanta() {
+        return llanta;
+    }
+
+    /**
+     * @return the estado
+     */
+    public boolean isEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    /**
+     * @return the velocidad
+     */
+    public int getVelocidad() {
+        return velocidad;
+    }
+
+    /**
+     * @param velocidad the velocidad to set
+     */
+    public void setVelocidad(int velocidad) {
+        this.velocidad += velocidad;
+    }
     
 }

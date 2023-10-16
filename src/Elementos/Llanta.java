@@ -10,10 +10,10 @@ package Elementos;
  */
 public abstract class Llanta {
     
-    private String tipo;
+    private int limitePermitido;
 
-    public Llanta(String tipo) {
-        this.tipo = tipo;
+    public Llanta(int limitePermitido) {
+        this.limitePermitido = limitePermitido;
     }
     
 }

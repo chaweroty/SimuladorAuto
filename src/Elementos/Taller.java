@@ -15,11 +15,15 @@ public class Taller {
     Llanta llanta;
     
     public Taller() {
-        
+        crearVehiculo();
     }
     
     private void crearVehiculo(){
         
+    }
+    
+    public Vehiculo getVehiculo(){
+        return this.vehiculo;
     }
     
 }

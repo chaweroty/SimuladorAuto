@@ -10,8 +10,8 @@ package Elementos;
  */
 public class LlantaBonita extends Llanta{
     
-    public LlantaBonita(String tipo) {
-        super(tipo);
+    public LlantaBonita(int limitePermitido) {
+        super(limitePermitido);
     }
     
 }
