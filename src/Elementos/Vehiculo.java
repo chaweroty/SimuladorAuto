@@ -21,11 +21,6 @@ public class Vehiculo {
         this.estado = false;
     }
     
-    public Vehiculo(int cc){
-        this.motor = new Motor1000(cc);
-        this.llanta = new LlantaBarata(cc);
-    }
-    
     public void encender() throws VehiculoEncendidoException{
         if(estado == true){
             VehiculoEncendidoException vee = new VehiculoEncendidoException();

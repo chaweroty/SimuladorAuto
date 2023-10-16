@@ -19,7 +19,7 @@ public class Taller {
     }
     
     private void crearVehiculo(){
-        vehiculo = new Vehiculo(270);
+        
     }
     
     public Vehiculo getVehiculo(){
