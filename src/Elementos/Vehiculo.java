@@ -21,6 +21,11 @@ public class Vehiculo {
         this.estado = false;
     }
     
+    public Vehiculo(int cc){
+        this.motor = new Motor1000(cc);
+        this.llanta = new LlantaBarata(cc);
+    }
+    
     public void encender() throws VehiculoEncendidoException{
         if(estado == true){
             VehiculoEncendidoException vee = new VehiculoEncendidoException();
@@ -36,6 +41,7 @@ public class Vehiculo {
             throw vae;
         }else{
             estado = false;
+            velocidad = 0;
         }
     }
     
@@ -56,7 +62,9 @@ public class Vehiculo {
             VehiculoDetenidoException vde = new VehiculoDetenidoException();
             throw vde;
         }else{
-            this.velocidad -= velocidadFrenado;
+            if((this.velocidad -= velocidadFrenado) <= 0){
+                this.velocidad = 0;
+            }
         }
     }
 

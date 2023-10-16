@@ -33,6 +33,10 @@ public class Ventana extends javax.swing.JFrame {
 
         btnEncender = new javax.swing.JButton();
         btnApagar = new javax.swing.JButton();
+        btnAcelerar = new javax.swing.JButton();
+        btnFrenar = new javax.swing.JButton();
+        txtVelocidad = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,25 +54,59 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
+        btnAcelerar.setText("Acelerar");
+        btnAcelerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcelerarActionPerformed(evt);
+            }
+        });
+
+        btnFrenar.setText("Frenar");
+        btnFrenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFrenarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Velocidad");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(278, 278, 278)
-                .addComponent(btnEncender)
-                .addGap(18, 18, 18)
-                .addComponent(btnApagar)
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(txtVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEncender)
+                            .addComponent(btnAcelerar))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnFrenar)
+                            .addComponent(btnApagar))))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(197, 197, 197)
+                .addGap(144, 144, 144)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEncender)
                     .addComponent(btnApagar))
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAcelerar)
+                    .addComponent(btnFrenar)
+                    .addComponent(txtVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
 
         pack();
@@ -77,6 +115,7 @@ public class Ventana extends javax.swing.JFrame {
     private void btnEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncenderActionPerformed
         try{
             taller.getVehiculo().encender();
+            JOptionPane.showMessageDialog(this, "Vehiculo encendido");
         }catch(VehiculoEncendidoException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -84,18 +123,51 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
         try{
-            taller.getVehiculo().encender();
+            taller.getVehiculo().apagar();
+            JOptionPane.showMessageDialog(this, "Vehiculo apagado");
         }catch(VehiculoApagadoException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_btnApagarActionPerformed
+
+    private void btnAcelerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcelerarActionPerformed
+        try{
+            int velocidadAceleracion = velocidadAceleracion = Integer.parseInt(txtVelocidad.getText());
+            taller.getVehiculo().acelerar(velocidadAceleracion);
+            JOptionPane.showMessageDialog(this, "Vehiculo acelerado a: "+ taller.getVehiculo().getVelocidad());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Ingrese el formato correcto.");
+        }catch(VehiculoApagadoException e1){
+            JOptionPane.showMessageDialog(this, "El vehiculo se encuentra apagado, por lo tanto no se puede acelerar.");
+        }
+        txtVelocidad.setText("");
+    }//GEN-LAST:event_btnAcelerarActionPerformed
+
+    private void btnFrenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrenarActionPerformed
+        try{
+            int velocidadFrenado = Integer.parseInt(txtVelocidad.getText());
+            taller.getVehiculo().frenar(velocidadFrenado);
+            JOptionPane.showMessageDialog(this, "Vehiculo frenado a: "+ taller.getVehiculo().getVelocidad());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Ingrese el formato correcto.");
+        }catch(VehiculoApagadoException e1){
+            JOptionPane.showMessageDialog(this, "El vehiculo se encuentra apagado, por lo tanto no se puede frenar.");
+        }catch(VehiculoDetenidoException e2){
+            JOptionPane.showMessageDialog(this, e2.getMessage());
+        }
+        txtVelocidad.setText("");
+    }//GEN-LAST:event_btnFrenarActionPerformed
 
     public void setTaller(Taller taller){
         this.taller = taller;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAcelerar;
     private javax.swing.JButton btnApagar;
     private javax.swing.JButton btnEncender;
+    private javax.swing.JButton btnFrenar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField txtVelocidad;
     // End of variables declaration//GEN-END:variables
 }

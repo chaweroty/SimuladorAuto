@@ -9,5 +9,10 @@ package Elementos;
  * @author lopez
  */
 public class VehiculoAccidentadoException extends RuntimeException{
+
+    @Override
+    public String getMessage() {
+        return "El vehiculo se encuentra accidentado, por lo tanto no se puede encender.";
+    }
     
 }
