@@ -15,5 +15,19 @@ public abstract class Llanta {
     public Llanta(int limitePermitido) {
         this.limitePermitido = limitePermitido;
     }
+
+    /**
+     * @return the limitePermitido
+     */
+    public int getLimitePermitido() {
+        return limitePermitido;
+    }
+
+    /**
+     * @param limitePermitido the limitePermitido to set
+     */
+    public void setLimitePermitido(int limitePermitido) {
+        this.limitePermitido = limitePermitido;
+    }
     
 }

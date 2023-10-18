@@ -15,5 +15,19 @@ public abstract class Motor {
     public Motor(int velocidadMaxima) {
         this.velocidadMaxima = velocidadMaxima;
     }
+
+    /**
+     * @return the velocidadMaxima
+     */
+    public int getVelocidadMaxima() {
+        return velocidadMaxima;
+    }
+
+    /**
+     * @param velocidadMaxima the velocidadMaxima to set
+     */
+    public void setVelocidadMaxima(int velocidadMaxima) {
+        this.velocidadMaxima = velocidadMaxima;
+    }
     
 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Elementos;
 
 /**
@@ -9,6 +5,8 @@ package Elementos;
  * @author lopez
  */
 public class Vehiculo {
+    
+    int BRUSCAMENTE = 30;
     
     private Motor motor;
     private Llanta llanta;
@@ -34,6 +32,11 @@ public class Vehiculo {
         if(estado == false){
             VehiculoApagadoException vae = new VehiculoApagadoException();
             throw vae;
+        }else if(velocidad > 60){
+            VehiculoAccidentadoException vace = new VehiculoAccidentadoException();
+            velocidad = 0;
+            estado = false;
+            throw vace;
         }else{
             estado = false;
             velocidad = 0;
@@ -44,6 +47,11 @@ public class Vehiculo {
         if(estado == false){
             VehiculoApagadoException vae = new VehiculoApagadoException();
             throw vae;
+        }else if(velocidadAcelerado > motor.getVelocidadMaxima()){
+            VehiculoAccidentadoException vace = new VehiculoAccidentadoException();
+            velocidad = 0;
+            estado = false;
+            throw vace;
         }else{
             setVelocidad(velocidadAcelerado);
         }
@@ -56,6 +64,10 @@ public class Vehiculo {
         }else if(velocidad == 0){
             VehiculoDetenidoException vde = new VehiculoDetenidoException();
             throw vde;
+        }else if(velocidadFrenado > BRUSCAMENTE |  velocidadFrenado > llanta.getLimitePermitido() | velocidadFrenado > velocidad){
+            VehiculoPatinandoException vpe = new VehiculoPatinandoException();
+            velocidad = 0;
+            throw vpe;
         }else{
             if((this.velocidad -= velocidadFrenado) <= 0){
                 this.velocidad = 0;

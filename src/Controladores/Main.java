@@ -4,6 +4,7 @@
  */
 package Controladores;
 
+import Elementos.LectorArchivoTexto;
 import Elementos.Taller;
 import Vistas.Ventana;
 
@@ -19,6 +20,8 @@ public class Main {
         v.setTaller(t);
         v.setVisible(true);
         v.setLocationRelativeTo(null);
+        LectorArchivoTexto lat = new LectorArchivoTexto();
+        t.setLectorArchivoTexto(lat);
     }
     
 }

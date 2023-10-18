@@ -5,7 +5,13 @@
 package Vistas;
 
 import Elementos.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -14,6 +20,8 @@ import javax.swing.JOptionPane;
 public class Ventana extends javax.swing.JFrame {
 
     private Taller taller;
+    JFileChooser fc;
+    File file;
     
     /**
      * Creates new form Ventana
@@ -37,6 +45,7 @@ public class Ventana extends javax.swing.JFrame {
         btnFrenar = new javax.swing.JButton();
         txtVelocidad = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +79,13 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel1.setText("Velocidad");
 
+        jButton1.setText("Seleccionar archivo de texto");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,6 +107,10 @@ public class Ventana extends javax.swing.JFrame {
                             .addComponent(btnFrenar)
                             .addComponent(btnApagar))))
                 .addContainerGap(286, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +126,9 @@ public class Ventana extends javax.swing.JFrame {
                     .addComponent(btnAcelerar)
                     .addComponent(btnFrenar)
                     .addComponent(txtVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addGap(65, 65, 65)
+                .addComponent(jButton1)
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         pack();
@@ -158,6 +180,22 @@ public class Ventana extends javax.swing.JFrame {
         txtVelocidad.setText("");
     }//GEN-LAST:event_btnFrenarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        fc = new JFileChooser();
+        
+        FileNameExtensionFilter fne = new FileNameExtensionFilter(".txt", "txt");
+        
+        fc.setFileFilter(fne);
+        fc.showOpenDialog(this);
+        file = fc.getSelectedFile();
+        
+        try {
+            taller.getLectorArchivoTexto().leer(file);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "El arhivo seleccionado no se puede abrir.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
     public void setTaller(Taller taller){
         this.taller = taller;
     }
@@ -167,6 +205,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton btnApagar;
     private javax.swing.JButton btnEncender;
     private javax.swing.JButton btnFrenar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtVelocidad;
     // End of variables declaration//GEN-END:variables

@@ -8,10 +8,13 @@ package Elementos;
  *
  * @author lopez
  */
-public class Motor3000 extends Motor{
-    
-    public Motor3000() {
-        super(220);
+public class FormatoNoValidoException extends RuntimeException{
+
+    @Override
+    public String getMessage() {
+        return "El formato ingresado no es valido.";
     }
+    
+    
     
 }
