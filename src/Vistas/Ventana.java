@@ -7,8 +7,6 @@ package Vistas;
 import Elementos.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -45,7 +43,8 @@ public class Ventana extends javax.swing.JFrame {
         btnFrenar = new javax.swing.JButton();
         txtVelocidad = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAbrirArchivo = new javax.swing.JButton();
+        lTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,12 +78,14 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel1.setText("Velocidad");
 
-        jButton1.setText("Seleccionar archivo de texto");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAbrirArchivo.setText("Seleccionar archivo de texto");
+        btnAbrirArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAbrirArchivoActionPerformed(evt);
             }
         });
+
+        lTxt.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,20 +106,28 @@ public class Ventana extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnFrenar)
-                            .addComponent(btnApagar))))
-                .addContainerGap(286, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnApagar)
+                                .addGap(111, 111, 111)
+                                .addComponent(lTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(110, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnAbrirArchivo)
                 .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEncender)
-                    .addComponent(btnApagar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEncender)
+                            .addComponent(btnApagar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(lTxt)))
                 .addGap(49, 49, 49)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -127,7 +136,7 @@ public class Ventana extends javax.swing.JFrame {
                     .addComponent(btnFrenar)
                     .addComponent(txtVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
-                .addComponent(jButton1)
+                .addComponent(btnAbrirArchivo)
                 .addContainerGap(91, Short.MAX_VALUE))
         );
 
@@ -137,6 +146,7 @@ public class Ventana extends javax.swing.JFrame {
     private void btnEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncenderActionPerformed
         try{
             taller.getVehiculo().encender();
+            lTxt.setText(taller.getVehiculo().getVelocidad()+"");
             JOptionPane.showMessageDialog(this, "Vehiculo encendido");
         }catch(VehiculoEncendidoException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -146,6 +156,7 @@ public class Ventana extends javax.swing.JFrame {
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
         try{
             taller.getVehiculo().apagar();
+            lTxt.setText("");
             JOptionPane.showMessageDialog(this, "Vehiculo apagado");
         }catch(VehiculoApagadoException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -156,6 +167,7 @@ public class Ventana extends javax.swing.JFrame {
         try{
             int velocidadAceleracion = velocidadAceleracion = Integer.parseInt(txtVelocidad.getText());
             taller.getVehiculo().acelerar(velocidadAceleracion);
+            lTxt.setText(taller.getVehiculo().getVelocidad()+"");
             JOptionPane.showMessageDialog(this, "Vehiculo acelerado a: "+ taller.getVehiculo().getVelocidad());
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Ingrese el formato correcto.");
@@ -169,6 +181,7 @@ public class Ventana extends javax.swing.JFrame {
         try{
             int velocidadFrenado = Integer.parseInt(txtVelocidad.getText());
             taller.getVehiculo().frenar(velocidadFrenado);
+            lTxt.setText(taller.getVehiculo().getVelocidad()+"");
             JOptionPane.showMessageDialog(this, "Vehiculo frenado a: "+ taller.getVehiculo().getVelocidad());
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Ingrese el formato correcto.");
@@ -180,7 +193,7 @@ public class Ventana extends javax.swing.JFrame {
         txtVelocidad.setText("");
     }//GEN-LAST:event_btnFrenarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAbrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirArchivoActionPerformed
         fc = new JFileChooser();
         
         FileNameExtensionFilter fne = new FileNameExtensionFilter(".txt", "txt");
@@ -190,23 +203,24 @@ public class Ventana extends javax.swing.JFrame {
         file = fc.getSelectedFile();
         
         try {
-            taller.getLectorArchivoTexto().leer(file);
+            taller.getLectorArchivoTexto().leerArchivo(file);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "El arhivo seleccionado no se puede abrir.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAbrirArchivoActionPerformed
     
     public void setTaller(Taller taller){
         this.taller = taller;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrirArchivo;
     private javax.swing.JButton btnAcelerar;
     private javax.swing.JButton btnApagar;
     private javax.swing.JButton btnEncender;
     private javax.swing.JButton btnFrenar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lTxt;
     private javax.swing.JTextField txtVelocidad;
     // End of variables declaration//GEN-END:variables
 }

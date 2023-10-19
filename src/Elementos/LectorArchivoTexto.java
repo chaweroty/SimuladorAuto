@@ -16,7 +16,7 @@ public class LectorArchivoTexto {
     private File file;
     private ArrayList <String> lineas;
 
-    public ArrayList leer(File file) throws IOException{
+    public ArrayList leerArchivo(File file) throws IOException{
 
         setLineas(new ArrayList<>());
 

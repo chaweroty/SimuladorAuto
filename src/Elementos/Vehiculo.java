@@ -1,5 +1,8 @@
 package Elementos;
 
+import java.io.File;
+import javax.sound.sampled.*;
+
 /**
  *
  * @author lopez
@@ -25,6 +28,33 @@ public class Vehiculo {
             throw vee;
         }else{
             estado = true;
+            sonidoencender();
+        }
+    }
+    
+    public void sonidoAceleracion() {
+        File soundFile = new File("C:\\Users\\lopez\\Downloads\\aceleracion");
+
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sonidoencender() {
+        File soundFile = new File("C:\\Users\\lopez\\Downloads\\encender");
+
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
@@ -54,6 +84,7 @@ public class Vehiculo {
             throw vace;
         }else{
             setVelocidad(velocidadAcelerado);
+            sonidoAceleracion();
         }
     }
     
