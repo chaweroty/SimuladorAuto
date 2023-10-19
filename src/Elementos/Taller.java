@@ -16,45 +16,74 @@ public class Taller {
     private LectorArchivoTexto lectorArchivoTexto;
     
     public Taller() {
-        crearVehiculo();
-    }
-    
-    private void crearVehiculo(){
-        Vehiculo v = new Vehiculo(motor, llanta);
-    }
-    
-    private void crearMotor() throws FormatoNoValidoException{
-        int cilindraje = Integer.parseInt(lectorArchivoTexto.detectarCilindraje());  
         
-        switch (cilindraje) {
-            case 1000 -> motor = new Motor1000();
-            case 2000 -> motor = new Motor2000();
-            case 3000 -> motor = new Motor3000();
-            default -> {
-            }
+    }
+    
+    private void crearVehiculo() throws FormatoNoValidoException{
+        try{
+            vehiculo = new Vehiculo(crearMotor(), crearLlanta());
+        }catch(FormatoNoValidoException e){
+            throw e;
         }
     }
     
-    private void crearLlanta(){
+    private Motor crearMotor() throws FormatoNoValidoException{
+        int cilindraje = Integer.parseInt(lectorArchivoTexto.detectarCilindraje());  
+        try{
+            switch (cilindraje) {
+                case 1000 -> {
+                    motor = new Motor1000();
+                    return motor;
+                }
+                case 2000 -> {
+                    motor = new Motor2000();
+                    return motor;
+                }
+                case 3000 -> {
+                    motor = new Motor3000();
+                    return motor;
+                }
+                default -> {
+                }
+            }
+        }catch(FormatoNoValidoException e){
+                throw e;
+        }
+        return null;
+    }
+    
+    private Llanta crearLlanta() throws FormatoNoValidoException{
         String llantas = lectorArchivoTexto.detectarLlanta();
-        switch (llantas) {
-            case "buenas" -> llanta = new LlantaBuena();
-            case "bonitas" -> llanta = new LlantaBonita();
-            case "baratas" -> llanta = new LlantaBarata();
-            default -> {
+        try{
+            if(llantas.equals("buenas")){
+                llanta = new LlantaBuena();
+                return llanta;
+            }else if(llanta.equals("bonitas")){
+                llanta = new LlantaBonita();
+                return llanta;
+            }else if(llantas.equals("baratas")){
+                llanta = new LlantaBarata();
+                return llanta;
             }
+        }catch (FormatoNoValidoException e){
+            throw e;
         }
+        return null;
     }
     
-    public Vehiculo getVehiculo(){
+    public Vehiculo getVehiculo() {
         return this.vehiculo;
     }
 
     /**
      * @param vehiculo the vehiculo to set
      */
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
+    public void setVehiculo() throws  FormatoNoValidoException{
+        try{
+            crearVehiculo();
+        }catch (FormatoNoValidoException e){
+            throw e;
+        }
     }
 
     /**

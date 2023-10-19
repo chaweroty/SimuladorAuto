@@ -33,7 +33,7 @@ public class Vehiculo {
     }
     
     public void sonidoAceleracion() {
-        File soundFile = new File("C:\\Users\\lopez\\Downloads\\aceleracion");
+        File soundFile = new File("C:\\Users\\smasg\\Downloads\\aceleracion.wav");
 
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
@@ -46,7 +46,7 @@ public class Vehiculo {
     }
 
     public void sonidoencender() {
-        File soundFile = new File("C:\\Users\\lopez\\Downloads\\encender");
+        File soundFile = new File("C:\\Users\\smasg\\Downloads\\encender.wav");
 
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
@@ -73,14 +73,14 @@ public class Vehiculo {
         }
     }
     
-    public void acelerar(int velocidadAcelerado) throws VehiculoApagadoException{
+    public void acelerar(int velocidadAcelerado) throws VehiculoApagadoException, VehiculoAccidentadoException{
         if(estado == false){
             VehiculoApagadoException vae = new VehiculoApagadoException();
             throw vae;
         }else if(velocidadAcelerado > motor.getVelocidadMaxima()){
-            VehiculoAccidentadoException vace = new VehiculoAccidentadoException();
             velocidad = 0;
             estado = false;
+            VehiculoAccidentadoException vace = new VehiculoAccidentadoException();
             throw vace;
         }else{
             setVelocidad(velocidadAcelerado);
