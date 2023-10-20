@@ -18,7 +18,7 @@ public class VehiculoNoExisteException extends RuntimeException{
     
     @Override
     public String getMessage() {
-        return "El vehiculo no se ha creado.";
+        return "El vehículo no se ha creado.";
     }
     
 }

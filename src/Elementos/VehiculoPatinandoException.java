@@ -12,7 +12,7 @@ public class VehiculoPatinandoException extends RuntimeException{
 
     @Override
     public String getMessage() {
-        return "El vehiculo se encuentra patinando, por lo tanto no se puede acelerar.";
+        return "El vehículo se encuentra patinando, por lo tanto no se puede acelerar.";
     }
     
 }

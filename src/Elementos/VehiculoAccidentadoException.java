@@ -12,7 +12,7 @@ public class VehiculoAccidentadoException extends RuntimeException{
 
     @Override
     public String getMessage() {
-        return "El vehiculo se encuentra accidentado, por lo tanto no se puede encender.";
+        return "El vehículo se encuentra accidentado, por lo tanto no se puede acelerar y se apagará.";
     }
     
 }

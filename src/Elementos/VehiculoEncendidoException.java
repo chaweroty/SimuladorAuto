@@ -12,7 +12,7 @@ public class VehiculoEncendidoException extends RuntimeException{
 
     @Override
     public String getMessage() {
-        return "El vehiculo ya está encendido.";
+        return "El vehículo ya está encendido, por lo tanto no se puede volver a encender.";
     }
 
 }

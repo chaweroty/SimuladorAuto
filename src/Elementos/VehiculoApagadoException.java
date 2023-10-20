@@ -12,7 +12,7 @@ public class VehiculoApagadoException extends RuntimeException{
 
     @Override
     public String getMessage() {
-        return "El vehiculo ya está apagado";
+        return "El vehículo se encuentra apagado, por lo tanto no se puede apagar.";
     }
 
 }

@@ -4,24 +4,40 @@ import java.io.File;
 import javax.sound.sampled.*;
 
 /**
+ * La clase Vehiculo representa un vehículo con un motor y una llanta, y permite realizar operaciones como encender, apagar,
+ * acelerar y frenar. También puede reproducir sonidos asociados a estas acciones. El vehículo almacena su estado (encendido o apagado)
+ * y su velocidad actual.
  *
- * @author lopez
+ * @author Juan Felipe López
+ * @author Sebastián García Gil
  */
 public class Vehiculo {
     
-    int BRUSCAMENTE = 30;
+    int BRUSCAMENTE = 30; // Constante que define el límite de frenado brusco.
     
-    private Motor motor;
-    private Llanta llanta;
-    private boolean estado;
-    private int velocidad;
+    private Motor motor; // El motor del vehículo.
+    private Llanta llanta; // La llanta del vehículo.
+    private boolean estado; // El estado del vehículo (encendido o apagado).
+    private int velocidad; // La velocidad actual del vehículo.
 
+    
+     /**
+     * Constructor de la clase Vehiculo que recibe un motor y una llanta como parámetros.
+     *
+     * @param motor   El motor del vehículo.
+     * @param llanta  La llanta del vehículo.
+     */
     public Vehiculo(Motor motor, Llanta llanta) {
         this.motor = motor;
         this.llanta = llanta;
         this.estado = false;
     }
     
+     /**
+     * Enciende el vehículo y reproduce un sonido de encendido. Si el vehículo ya está encendido, se lanza una excepción.
+     *
+     * @throws VehiculoEncendidoException Si el vehículo ya está encendido.
+     */
     public void encender() throws VehiculoEncendidoException{
         if(estado == true){
             VehiculoEncendidoException vee = new VehiculoEncendidoException();
@@ -31,7 +47,9 @@ public class Vehiculo {
             sonidoencender();
         }
     }
-    
+    /**
+     * Reproduce un sonido de aceleración.
+     */
     public void sonidoAceleracion() {
         File soundFile = new File("C:\\Users\\smasg\\Downloads\\aceleracion.wav");
 
@@ -44,7 +62,9 @@ public class Vehiculo {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Reproduce un sonido de encender.
+     */
     public void sonidoencender() {
         File soundFile = new File("C:\\Users\\smasg\\Downloads\\encender.wav");
 
@@ -58,6 +78,12 @@ public class Vehiculo {
         }
     }
     
+    /**
+     * Apaga el vehículo y, si la velocidad es mayor que 60, lanza una excepción de accidente. Si el vehículo ya está apagado, se lanza una excepción.
+     *
+     * @throws VehiculoApagadoException   Si el vehículo ya está apagado.
+     * @throws VehiculoAccidentadoException  Si la velocidad es mayor que 60 y se produce un accidente.
+     */
     public void apagar() throws VehiculoApagadoException, VehiculoAccidentadoException{
         if(estado == false){
             VehiculoApagadoException vae = new VehiculoApagadoException();
@@ -72,6 +98,15 @@ public class Vehiculo {
             velocidad = 0;
         }
     }
+    
+    /**
+     * Acelera el vehículo a la velocidad especificada y reproduce un sonido de aceleración. Si el vehículo está apagado o la velocidad
+     * excede la velocidad máxima del motor, se lanza una excepción.
+     *
+     * @param velocidadAcelerado La velocidad a la que se acelerará el vehículo.
+     * @throws VehiculoApagadoException        Si el vehículo está apagado.
+     * @throws VehiculoAccidentadoException    Si la velocidad excede la velocidad máxima del motor y se produce un accidente.
+     */
     
     public void acelerar(int velocidadAcelerado) throws VehiculoApagadoException, VehiculoAccidentadoException{
         if(estado == false){
@@ -88,6 +123,15 @@ public class Vehiculo {
         }
     }
     
+    /**
+     * Frena el vehículo a la velocidad especificada. Si el vehículo está apagado o detenido, o si la velocidad de frenado es
+     * excesiva, se lanzan excepciones.
+     *
+     * @param velocidadFrenado La velocidad a la que se frenará el vehículo.
+     * @throws VehiculoApagadoException        Si el vehículo está apagado.
+     * @throws VehiculoDetenidoException       Si el vehículo ya está detenido.
+     * @throws VehiculoPatinandoException      Si la velocidad de frenado es excesiva o superior al límite permitido por la llanta.
+     */
     public void frenar(int velocidadFrenado) throws VehiculoApagadoException, VehiculoDetenidoException{
         if(estado == false){
             VehiculoApagadoException vae = new VehiculoApagadoException();

@@ -5,13 +5,21 @@
 package Elementos;
 
 /**
+ * La clase abstracta Motor representa el motor de un vehículo. Define la velocidad máxima
+ * que puede alcanzar el vehículo con este motor.
  *
- * @author lopez
+ * @author Juan Felipe López
+ *  * @author Sebastián García Gil
  */
 public abstract class Motor {
     
-    private int velocidadMaxima;
+    private int velocidadMaxima; // La velocidad máxima que puede alcanzar el vehículo con este motor.
 
+     /**
+     * Constructor de la clase Motor que recibe la velocidad máxima.
+     *
+     * @param velocidadMaxima La velocidad máxima que puede alcanzar el vehículo con este motor.
+     */
     public Motor(int velocidadMaxima) {
         this.velocidadMaxima = velocidadMaxima;
     }
