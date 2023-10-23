@@ -24,7 +24,7 @@ public class LectorArchivoTexto {
      *
      * @param file El archivo de texto a leer y validar.
      * @return Una lista de las líneas del archivo de texto.
-     * @throws IOException               Si ocurre un error de lectura o acceso al archivo.
+     * @throws IOException    Si ocurre un error de lectura o acceso al archivo.
      * @throws FormatoNoValidoException   Si el formato del archivo no cumple con ciertas reglas.
      */
 
@@ -56,7 +56,7 @@ public class LectorArchivoTexto {
      *
      * @param file El archivo de texto a validar.
      * @return `true` si el formato es válido; de lo contrario, `false`.
-     * @throws IOException               Si ocurre un error de lectura o acceso al archivo.
+     * @throws IOException   Si ocurre un error de lectura o acceso al archivo.
      * @throws FormatoNoValidoException   Si el formato del archivo no cumple con ciertas reglas.
      */
     public boolean validarArchivo(File file) throws IOException, FormatoNoValidoException{
@@ -88,7 +88,7 @@ public class LectorArchivoTexto {
      *
      * @param file El archivo de texto a validar.
      * @return `true` si el formato es válido; de lo contrario, `false`.
-     * @throws IOException               Si ocurre un error de lectura o acceso al archivo.
+     * @throws IOException   Si ocurre un error de lectura o acceso al archivo.
      * @throws FormatoNoValidoException   Si el formato del archivo no cumple con ciertas reglas.
      */
     
